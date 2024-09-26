@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Adicionando estilos personalizados */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Roboto:wght@400;700&display=swap');
+
+html {
+    font-family: 'Roboto', sans-serif; /* Define a fonte padrão para o corpo */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Baloo 2', cursive; /* Define a fonte para cabeçalhos */
+}
