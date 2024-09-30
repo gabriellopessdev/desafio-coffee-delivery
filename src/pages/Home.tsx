@@ -1,5 +1,5 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
-import { Menu } from "../Menu";
+import { Menu } from "../components/Menu";
 import CoffeeImage from '../assets/images/hero.svg'
 import CoffeeImageBg from '../assets/images/hero-bg.svg'
 

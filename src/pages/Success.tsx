@@ -11,7 +11,7 @@ export function Success() {
                     <p className="text-2xl mt-4">Agora é só esperar qure logo o café chegará até você</p>
                 </div>
                 <div className="mt-16 relative w-full p-[2px] rounded-[6px_36px_6px_36px] bg-gradient-to-br from-yellow-500 to-purple-500">
-                    <div className="p-10 items-center w-full h-full bg-white rounded-[6px_36px_6px_36px]">
+                    <div className="p-10 items-center bg-white rounded-[6px_36px_6px_36px]">
                         <div className="flex items-center">
                             <MapPin
                                 size={32}
@@ -48,7 +48,7 @@ export function Success() {
                     </div>
                 </div>
             </div>
-            <div className="flex w-1/2 ">
+            <div className="flex w-1/2 mt-48">
                 <img
                     src={delivery}
                 />

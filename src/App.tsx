@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 function App() {
     return (
-        <main className='mx-40'>
+        <main className='max-w-[1440px] mx-auto'>
             <Header />
             <Outlet />
         </main>
