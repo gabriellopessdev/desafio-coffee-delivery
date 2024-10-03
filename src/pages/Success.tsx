@@ -1,7 +1,14 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 import delivery from '../assets/images/delivery.svg'
+import { useLocation } from "react-router-dom";
+
+
 
 export function Success() {
+
+    const location = useLocation();
+    const { street, city, paymentMethod, neighborhood, state, number } = location.state || {};
+
     return (
 
         <main className="flex justify-center">
@@ -10,7 +17,7 @@ export function Success() {
                     <h1 className="text-6xl text-yellow-600">Uhu! Pedido confirmado</h1>
                     <p className="text-2xl mt-4">Agora é só esperar qure logo o café chegará até você</p>
                 </div>
-                <div className="mt-16 relative w-full p-[2px] rounded-[6px_36px_6px_36px] bg-gradient-to-br from-yellow-500 to-purple-500">
+                <div className="mt-16 relative w-ful p-[2px] rounded-[6px_36px_6px_36px] bg-gradient-to-br from-yellow-500 to-purple-500">
                     <div className="p-10 items-center bg-white rounded-[6px_36px_6px_36px]">
                         <div className="flex items-center">
                             <MapPin
@@ -19,8 +26,8 @@ export function Success() {
                                 className='bg-purple-600 text-white p-2 rounded-full'
                             />
                             <div className="ml-2 flex flex-col">
-                                <span className="ml-2">Entrega em <strong>Rua1</strong></span>
-                                <p className="ml-2"><strong>Japaraiba</strong></p>
+                                <span className="ml-2">Entrega em <strong>{street},{number}</strong></span>
+                                <p className="ml-2">{neighborhood} - {city}, {state}</p>
                             </div>
                         </div>
                         <div className="flex items-center mt-6">
@@ -42,7 +49,7 @@ export function Success() {
                             />
                             <div className="ml-2 flex flex-col">
                                 <span className="ml-2">Pagamento na entrega</span>
-                                <p className="ml-2"><strong>Dinheiro</strong></p>
+                                <p className="ml-2"><strong>{paymentMethod}</strong></p>
                             </div>
                         </div>
                     </div>

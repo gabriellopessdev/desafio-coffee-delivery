@@ -1,9 +1,9 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 
 export interface CartItem {
     name: string;
-    price: string;
+    price: number;
     quantity: number;
     image: string;
 }
@@ -12,6 +12,7 @@ interface CartContextType {
     cartItems: CartItem[];
     addToCart: (item: CartItem) => void;
     removeFromCart: (itemName: string) => void;
+    removeAllFromCart: () => void;
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -21,7 +22,21 @@ interface CartContextProviderProps {
 }
 
 export const CartProvider = ({ children }: CartContextProviderProps) => {
-    const [cartItems, setCartItems] = useState<CartItem[]>([]); // Tipar o estado
+    const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+        // Restaura o carrinho do localStorage ao inicializar
+        const storedCart = localStorage.getItem('cartItems');
+        return storedCart ? JSON.parse(storedCart) : [];
+    });
+
+    // Efeito para salvar o carrinho no localStorage sempre que ele for atualizado
+    useEffect(() => {
+        if (cartItems.length > 0) {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        } else {
+            localStorage.removeItem('cartItems'); // Remove do localStorage se o carrinho estiver vazio
+        }
+    }, [cartItems]);
+
 
     const addToCart = (item: CartItem) => { // Tipar o parâmetro da função
         setCartItems((prevItems) => {
@@ -44,8 +59,12 @@ export const CartProvider = ({ children }: CartContextProviderProps) => {
         );
     };
 
+    const removeAllFromCart = () => {
+        setCartItems([]);
+    };
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, removeAllFromCart }}>
             {children}
         </CartContext.Provider>
     );

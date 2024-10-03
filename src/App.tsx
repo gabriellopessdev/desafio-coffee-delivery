@@ -5,7 +5,7 @@ import { CartProvider } from './context/CartContext'
 function App() {
     return (
         <CartProvider>
-            <main className='max-w-[1440px] mx-8'>
+            <main className='mx-10'>
                 <Header />
                 <Outlet />
             </main>

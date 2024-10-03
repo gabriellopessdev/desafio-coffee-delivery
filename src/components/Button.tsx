@@ -5,35 +5,32 @@ interface ButtonProps {
 }
 
 export function Button({ index, quantitiesCoffee, setQuantitiesCoffee }: ButtonProps) {
-    const increaseQuantity = (index: number) => {
-        setQuantitiesCoffee((prevQuantities) => {
-            const updatedQuantities = [...prevQuantities];
-            updatedQuantities[index] += 1;
-            return updatedQuantities;
-        });
+
+    const handleIncrease = () => {
+        const newQuantities = [...quantitiesCoffee];
+        newQuantities[index] = (newQuantities[index] || 0) + 1; // Incrementa a quantidade
+        setQuantitiesCoffee(newQuantities);
     };
 
-    const decreaseQuantity = (index: number) => {
-        setQuantitiesCoffee((prevQuantities) => {
-            const updatedQuantities = [...prevQuantities];
-            if (updatedQuantities[index] > 1) {
-                updatedQuantities[index] -= 1;
-            }
-            return updatedQuantities;
-        });
+    const handleDecrease = () => {
+        const newQuantities = [...quantitiesCoffee];
+        if (newQuantities[index] > 1) {
+            newQuantities[index] -= 1; // Decrementa a quantidade, mas não abaixo de 0
+        }
+        setQuantitiesCoffee(newQuantities);
     };
 
     return (
         <div className='flex items-center bg-gray-300 rounded-lg '>
             <button
-                onClick={() => decreaseQuantity(index)}
+                onClick={handleDecrease}
                 className="text-purple-800 text-2xl px-3 py-1"
             >
                 --
             </button>
-            <p className="mx-2 text-lg">{quantitiesCoffee[index]}</p>
+            <span className="mx-2 text-lg">{quantitiesCoffee[index]}</span>
             <button
-                onClick={() => increaseQuantity(index)}
+                onClick={handleIncrease}
                 className="text-purple-800 text-2xl px-3 py-1"
             >
                 +
